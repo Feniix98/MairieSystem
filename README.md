@@ -11,8 +11,5 @@
 # :exclamation:Informations supplémentaires
 - Ce plugin possède un Webhook m'informant de qui utilise mon plugin
 
-# :tools: Installation
-*[Mairie98](https://github.com/Feniix98/Mairie98/releases/latest)*
-
 # :green_book:  Dépendance
 *[ModKit & AAMenu](https://github.com/Aarnow/NovaLife_ModKit-Releases/releases/latest)*
