@@ -1,47 +1,60 @@
-using AAMenu;
 using Life;
 using Life.Network;
 using Life.UI;
-using ModKit.Helper.DiscordHelper;
+using ModKit.Interfaces;
 using Format = ModKit.Helper.TextFormattingHelper;
+using AAMenu;
+using ModKit.Internal;
 
 namespace Mairie98
 {
-    public class Main : ModKit.ModKit
+    public class Mairie : ModKit.ModKit
     {
-        public Main(IGameAPI gameAPI ) : base(gameAPI) 
+        public Mairie(IGameAPI gameAPI) : base(gameAPI) 
         {
-            PluginInformations = new ModKit.Interfaces.PluginInformations("Mairie98", "1.0.0", "Fenix98");
+            PluginInformations = new PluginInformations("Virement98", "1.0.0", "! Fenix");
         }
-        public override async void OnPluginInit()
+
+        public override void OnPluginInit()
         {
             base.OnPluginInit();
-            DiscordWebhookClient webhook = new DiscordWebhookClient("https://discord.com/api/webhooks/0153290707036/ZEY9CDGBOCOBYGY1TJhihsppu-TPdSwl8a4JLhsZHWuUB573Mna7ZQXK4g4m5T-vAbQc");
-            await DiscordHelper.SendMsg(webhook, "**[Mairie98] - [Fenix98]**" +
-                $"\n Le plugin s'est initialisée sur {Nova.serverInfo.serverListName}");
-            InsertMenu(); 
-        }
-        public void InsertMenu()
-        {
-            Menu.AddAdminPluginTabLine(PluginInformations, 1, "Mairie98", (ui) =>
+            Logger.LogSuccess($"{PluginInformations.SourceName} v{PluginInformations.Version}", "initialisé");
+            new SChatCommand("/mairie", "Permet de faire une annonce mairie", "/mairie", (player, args) =>
+            {
+                if (player.IsAdmin)
+                {
+                    MairiePanel(player);
+                }
+            }).Register();
+            Menu.AddAdminPluginTabLine(PluginInformations, 1, "Faire une annonce mairie", (ui) =>
             {
                 Player player = PanelHelper.ReturnPlayerFromPanel(ui);
-                Mairie(player);
+                MairiePanel(player);
             });
         }
-        public void Mairie(Player player)
+
+        public void MairiePanel(Player player)
         {
-            UIPanel panel = new UIPanel("Mairie", UIPanel.PanelType.Input);
-            panel.AddButton($"{Format.Color("Fermer", Format.Colors.Error)}", ui => player.ClosePanel(panel));
-            panel.AddButton($"{Format.Color("Envoyer", Format.Colors.Success)}", ui =>
+            UIPanel panel = new UIPanel("Confirmation", UIPanel.PanelType.Input);
+
+            panel.SetInputPlaceholder("Annonce...");
+
+            panel.AddButton("Annuler", ui => player.ClosePanel(panel));
+            panel.AddButton("Publier", delegate
             {
-                player.ClosePanel(panel);
-                Nova.server.SendMessageToAll($"<color={LifeServer.COLOR_RED}>[MAIRIE]</color> : " + panel.inputText);
-                foreach(var players in Nova.server.GetAllInGamePlayers())
+                string annonce = panel.inputText;
+                if (string.IsNullOrEmpty(annonce))
                 {
-                    players.setup.TargetShowCenterText($"<color={LifeServer.COLOR_RED}>[MAIRIE]</color>", panel.inputText, 15f);
+                    player.Notify("Erreur", "Veuillez entrer une annonce valide", NotificationManager.Type.Error, 10f);
+                }
+                else
+                {
+                    player.ClosePanel(panel);
+                    Nova.server.SendMessageToAll($"{Format.Color("[Annonce] - [Mairie] :", Format.Colors.Error)} {annonce}");
+                    player.Notify("Mairie98", "Annonce publiée avec succès !", NotificationManager.Type.Success);
                 }
             });
+
             player.ShowPanelUI(panel);
         }
     }
