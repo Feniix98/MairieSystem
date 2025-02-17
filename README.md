@@ -1,15 +1,16 @@
-# :house: Mairie98
+# :tools: MairieSystem
 
-# :art: Description
-- Ce plugin permet d'implémenter un système de mairie sur le jeu Nova-Life : Amboise permettant aux staffs d'envoyer des messages mairie via **AAMenu(Touche P par défaut)** => **Administration** => **Plugins** => **Mairie98**
+# :package:  Description
+```md
+Permet aux staffs d'envoyer des annonces officielles via un menu dédié, rendant la gestion de la mairie plus interactive et immersive.   
+```
 
-# :bell: Comment l'utiliser
-- Pour utiliser ce plugin il faudra :
-- Le mettre sur votre serveur
-- Redémarrer le serveur
+### :toolbox:  Fonctionnalités
+```markdown
+- Envoi de messages mairie via **AAMenu (Touche P par défaut)** => **Administration** => **Plugins** => **MairieSystem**.  
+- Interface simple et rapide d'utilisation.  
+- Système optimisé pour éviter les spams et garantir une bonne visibilité des annonces.  
+```
 
-# :exclamation:Informations supplémentaires
-- Ce plugin possède un Webhook m'informant de qui utilise mon plugin
-
-# :green_book:  Dépendance
-*[ModKit & AAMenu](https://github.com/Aarnow/NovaLife_ModKit-Releases/releases/latest)*
+# :pushpin: Dépendances
+**[MODKIT & AAMENU](https://github.com/Aarnow/NovaLife_ModKit-Releases/releases/latest)**
