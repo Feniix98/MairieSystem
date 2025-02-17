@@ -7,7 +7,8 @@ Permet aux staffs d'envoyer des annonces officielles via un menu dédié, rendan
 
 ### :toolbox:  Fonctionnalités
 ```markdown
-- Envoi de messages mairie via **AAMenu (Touche P par défaut)** => **Administration** => **Plugins** => **MairieSystem**.  
+- Envoi de messages mairie via **AAMenu (Touche P par défaut)** => **Administration** => **Plugins** => **Mairie98**.  
+- Accès rapide avec la commande `/mairie`.  
 - Interface simple et rapide d'utilisation.  
 - Système optimisé pour éviter les spams et garantir une bonne visibilité des annonces.  
 ```
