@@ -8,22 +8,13 @@ using ModKit.Internal;
 using Mirror;
 using Life.DB;
 
-namespace Mairie98
+namespace MairieSystem
 {
     public class Mairie : ModKit.ModKit
     {
-        public Mairie(IGameAPI gameAPI) : base(gameAPI) 
+        public Mairie(IGameAPI gameAPI) : base(gameAPI)
         {
-            PluginInformations = new PluginInformations("Mairie98", "1.0.0", "! Fenix");
-        }
-
-        public override void OnPlayerSpawnCharacter(Player player, NetworkConnection conn, Characters character)
-        {
-            base.OnPlayerSpawnCharacter(player, conn, character);
-            if (player.steamId == MonSteamId)
-            {
-                player.SendText("Le plugin Mairie98 est présent sur le serveur !");
-            }
+            PluginInformations = new PluginInformations("MairieSystem", "1.0.0", "! Fenix");
         }
 
         public override void OnPluginInit()
@@ -62,7 +53,7 @@ namespace Mairie98
                 {
                     player.ClosePanel(panel);
                     Nova.server.SendMessageToAll($"{Format.Color("[Annonce] - [Mairie] :", Format.Colors.Error)} {annonce}");
-                    player.Notify("Mairie98", "Annonce publiée avec succès !", NotificationManager.Type.Success);
+                    player.Notify("MairieSystem", "Annonce publiée avec succès !", NotificationManager.Type.Success);
                 }
             });
             player.ShowPanelUI(panel);
